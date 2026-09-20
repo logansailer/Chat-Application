@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // routes
-// add
+app.use("/api/auth", require("./src/routes/auth"));
 
 // error handling
 app.use((err, req, res, next) => {
