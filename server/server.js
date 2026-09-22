@@ -10,7 +10,8 @@ app.use(express.json());
 app.use(cors());
 
 // routes
-app.use("/api/auth", require("./src/routes/auth"));
+app.use("/api", require("./src/routes/register"));
+app.use("/api", require("./src/routes/login"));
 
 // error handling
 app.use((err, req, res, next) => {
@@ -22,20 +23,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-
-// server 
+// server
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
-
-  // test db connection
-  try {
-    await db.raw("SELECT 1");
-    console.log("Database connected successfully");
-  } catch (error) {
-    console.error("Database connection failed :(");
-    console.error(error.message);
-  }
 });
