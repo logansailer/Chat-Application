@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/list_all_users", async (req, res) => {
   try {
-    const { requester_user_id } = req.body;
+    const { requester_user_id } = req.query;
     const requesterId = Number(requester_user_id);
 
     if (!Number.isInteger(requesterId) || requesterId <= 0) {
@@ -43,6 +43,5 @@ router.get("/list_all_users", async (req, res) => {
       );
   }
 });
-
 
 module.exports = router;

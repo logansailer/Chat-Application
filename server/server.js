@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(cors());
 
 // routes
-app.use("/api", require("./src/routes/register"));
-app.use("/api", require("./src/routes/login"));
-app.use("/api", require("./src/routes/messages"));
-app.use("/api", require("./src/routes/users"));
+app.use("/", require("./src/routes/register"));
+app.use("/", require("./src/routes/login"));
+app.use("/", require("./src/routes/messages"));
+app.use("/", require("./src/routes/users"));
 
 // error handling
 app.use((err, req, res, next) => {

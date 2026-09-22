@@ -109,15 +109,15 @@ router.post("/send_message", requireAuth, async (req, res) => {
 
 router.get("/view_messages", async (req, res) => {
   try {
-    const { sender_user_id, receiver_user_id } = req.body;
-    const senderId = Number(sender_user_id);
-    const receiverId = Number(receiver_user_id);
+    const { user_id_a, user_id_b } = req.query;
+    const userA = Number(user_id_a);
+    const userB = Number(user_id_b);
 
     if (
-      !Number.isInteger(senderId) ||
-      senderId <= 0 ||
-      !Number.isInteger(receiverId) ||
-      receiverId <= 0
+      !Number.isInteger(userA) ||
+      userA <= 0 ||
+      !Number.isInteger(userB) ||
+      userB <= 0
     ) {
       return res
         .status(400)
@@ -125,7 +125,7 @@ router.get("/view_messages", async (req, res) => {
           formatError(
             400,
             "Validation Error",
-            "sender_user_id and receiver_user_id are required",
+            "user_id_a and user_id_b are required",
           ),
         );
     }
@@ -133,10 +133,10 @@ router.get("/view_messages", async (req, res) => {
     const messages = await db("messages")
       .select("id", "sender_id as sender_user_id", "message", "created_at")
       .where(function () {
-        this.where("sender_id", senderId).andWhere("receiver_id", receiverId);
+        this.where("sender_id", userA).andWhere("receiver_id", userB);
       })
       .orWhere(function () {
-        this.where("sender_id", receiverId).andWhere("receiver_id", senderId);
+        this.where("sender_id", userB).andWhere("receiver_id", userA);
       })
       .orderBy("created_at", "asc");
 
