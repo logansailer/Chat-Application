@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const db = require("./src/db");
+
 
 const app = express();
 
@@ -13,6 +13,7 @@ app.use(cors());
 app.use("/api", require("./src/routes/register"));
 app.use("/api", require("./src/routes/login"));
 app.use("/api", require("./src/routes/messages"));
+app.use("/api", require("./src/routes/users"));
 
 // error handling
 app.use((err, req, res, next) => {
