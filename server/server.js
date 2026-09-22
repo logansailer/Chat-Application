@@ -12,6 +12,7 @@ app.use(cors());
 // routes
 app.use("/api", require("./src/routes/register"));
 app.use("/api", require("./src/routes/login"));
+app.use("/api", require("./src/routes/messages"));
 
 // error handling
 app.use((err, req, res, next) => {
