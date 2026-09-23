@@ -3,7 +3,7 @@ Logan Sailer
 ## Time to complete: 
 Roughly 7 hours
 ## Steps taken: 
-The structure of the assignment really encourages it to be implemented piece by piece, which is what I did. For example, I implemented and heavily tested registering a user before logging in, I had to login before sending a message, and I had to send a message before searching messages.
+The structure of the assignment really encourages it to be implemented piece by piece, which is what I did. For example, I implemented and heavily tested registering a user before logging in, I had to login before sending a message, and I had to send a message before searching messages. With this approach, I was able to catch issues early and ensure endpoints were receiving and sending the proper information before moving on. 
 ## Issues with structure: 
 I would say the biggest issue with the structure is the lack of keeping track of a user throughout. The user is not saved across the session which requires the requests to send its own user_id every time, which isn't efficient if a user is already logged in. There is also a lack of authentication throughout: It is not required login to view messages between users or to view users, which is a massive security vulnerability. I added a required authentication token to send messages as a proof of concept, but didn't implemente it across the project so reviewers can call them as the requirements show.
 ## Suggested improvements:
